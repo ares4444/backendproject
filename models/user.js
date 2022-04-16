@@ -1,21 +1,11 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const kittySchema = new mongoose.Schema({
+    name: String
+  });
 
-var userSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
+const conn = mongoose.createConnection('mongodb+srv://ourteam:1234@cluster0.fg9bn.mongodb.net/Back-EndProject?retryWrites=true&w=majority');
 
-  refreshToken: String,
-});
+const MyModel = conn.model('ModelName', kittySchema );
+const m = new MyModel;
+m.save(); // works
 
-module.exports = mongoose.model("User", userSchema);
+
